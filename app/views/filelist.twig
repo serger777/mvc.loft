@@ -1,0 +1,16 @@
+<table class="table table-bordered">
+    {% for file in files %}
+        <tr>
+            <th>Название файла</th>
+            <th>Фотография</th>
+            <th>Действия</th>
+        </tr>
+        <tr>
+            <td>{{ file.fileName }}</td>
+            <td><img style="object-fit: cover;" src="{{ uploads_dir }}/{{ file.fileName }}" alt=""></td>
+            <td>
+                <a href="/filelist/delete?id={{ file.id }}">Удалить фотографию</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
