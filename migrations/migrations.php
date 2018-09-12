@@ -26,7 +26,7 @@ Capsule::schema()->dropIfExists('files');
 
 Capsule::schema()->create('files', function (Blueprint $table) {
     $table->increments('id');
-    $table->integer('login');
+    $table->string('login');
     $table->string('file_path'); //varchar 255
     $table->timestamps(); //created_at&updated_at тип datetime
 });

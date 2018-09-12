@@ -1,16 +1,15 @@
 <?php
+
 namespace App\Controllers;
+
 use App\Core\MainController;
-use App\Models\User;
+use App\Models\User as User;
 
 
 class Main extends MainController
 {
-    /**
-     *
-     *sort_age=asc/desc
-     */
-    public function users()
+
+    public function index()
     {
 
         $sortAge = 'asc';

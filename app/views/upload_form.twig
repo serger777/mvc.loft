@@ -2,15 +2,17 @@
     <table class="table table-bordered">
 {% for file in files %}
 <tr>
-    <th>Название файла</th>
-    <th>Фотография</th>
-    <th>Действия</th>
-</tr>
-<tr>
-    <td>{{ file.fileName }}</td>
-    <td><img style="object-fit: cover;" src="img/{{ login }}/1.jpg" alt=""></td>
+    <th>id файла</th>
+    <th>файл</th>
 
 </tr>
+<tr>
+    <td>{{ file.id}}</td>
+    <td><img style="width:50px; object-fit: cover;" src="{{ file.file_path }}" alt=""></td>
+
+</tr>
+{% else %}
+    Вы еще не загружали файлы.
 {% endfor %}
 </table>
 
@@ -18,9 +20,8 @@
 
 
 
-
 <h2>Пользователь {{ login }}</h2>
-    <img style="object-fit: cover;" src="../../img/{{ login }}/1.jpg" alt="">
+
 <form action="/users/save_file" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="login" value="{{ login }}">
      <input type="file" name="upload_file" id="upload_file">
@@ -28,7 +29,6 @@
     <button type="submit">Загрузить</button>
 </form>
 
-<hr>
 
 
 

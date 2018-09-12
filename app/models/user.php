@@ -8,21 +8,13 @@ class User extends Model
     protected $table = 'users';
     protected $fillable = ['login', 'password', 'name', 'age', 'avatar_path', 'description'];
 
-    /**
-     * Возвращает массив с информацией о всех пользователях
-     * @return array
-     */
     public static function getAllUsers()
     {
         $users = User::all()->toArray();
         return $users;
     }
 
-    /**
-     * Возвращает массив с информацией о всех пользователях с сортировкой по возрасту.
-     * @param $typeSort - строка 'asc' или 'desc'
-     * @return array
-     */
+
     public static function getUsersSortByAge($typeSort)
     {
         if ($typeSort != 'asc' && $typeSort != 'desc') {
@@ -32,16 +24,7 @@ class User extends Model
         return $users;
     }
 
-    /**
-     * Создает нового пользователя в базе данных
-     * @param $login
-     * @param $password
-     * @param $name
-     * @param $age
-     * @param $description
-     * @param $avatarPath
-     * @return mixed
-     */
+
     public static function createUser($login, $password, $name, $age, $description, $avatarPath)
     {
         $user = User::create([
@@ -55,22 +38,13 @@ class User extends Model
         return $user;
     }
 
-    /**
-     * Возвращает объект-пользователя по его логину
-     * @param $login
-     * @return mixed
-     */
     public static function getByLogin($login)
     {
         $user = User::where('login', '=', $login)->first();
         return $user;
     }
 
-    /**
-     * Возвращае id пользователя по его логину
-     * @param $login
-     * @return int
-     */
+
     public static function getIdByLogin($login)
     {
         $user = User::where('login', '=', $login)->first();

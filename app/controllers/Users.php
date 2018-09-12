@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Core\MainController;
-use App\Models\File as File;
+use App\Models\File;
 
 use App\Models\User as User;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -139,7 +139,10 @@ class Users extends MainController
             return;
         };
 
-        $this->view->twigRender('upload_form', ['login' => $login]);
+        $files = File::getByUser($login);
+
+
+        $this->view->twigRender('upload_form', ['login' => $login, 'files' => $files]);
     }
 
 
@@ -158,7 +161,7 @@ class Users extends MainController
         };
 
 //        Создаем каталог для файлов пользователя
-        $imagePath = 'img/'. $login;
+        $imagePath = 'img/' . $login;
         if (!file_exists($imagePath)) {
             mkdir($imagePath);
         };
@@ -167,11 +170,11 @@ class Users extends MainController
 
             $uploadFilePath = $imagePath . '/' . $_FILES['upload_file']['name'];
             move_uploaded_file($_FILES['upload_file']['tmp_name'], $uploadFilePath);
-            $fileLink = '/img/' . $login. '/' . $_FILES['upload_file']['name'];
+            $fileLink = '/img/' . $login . '/' . $_FILES['upload_file']['name'];
             $data_file = [
 
                 'login' => $login,
-                'file_path'=>$fileLink,
+                'file_path' => $fileLink,
             ];
             File::create($data_file);
         };
